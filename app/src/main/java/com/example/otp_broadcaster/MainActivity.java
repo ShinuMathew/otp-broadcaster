@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.otp_broadcaster.managers.BroadcastManager;
 
@@ -23,9 +24,7 @@ public class MainActivity extends AppCompatActivity {
         otpText = findViewById(R.id.otp_text);
 
         BroadcastManager bcm = new BroadcastManager(MainActivity.this, MainActivity.this, otpText);
-        Log.d("InitBroadcastManager", "onCreate: ");
+        Log.d("##### InitBroadcastManager #####", "onCreate: BroadcastManager initialized.");
         bcm.init();
-
     }
-
 }

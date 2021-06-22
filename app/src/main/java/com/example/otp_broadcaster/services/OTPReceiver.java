@@ -7,6 +7,9 @@ import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.otp_broadcaster.helper.BroadcastHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,9 +18,15 @@ public class OTPReceiver extends BroadcastReceiver {
 
 
     private static EditText otpText;
+    private static String otp;
+    private BroadcastHelper broadcastHelper;
 
     public void setOtpText(EditText editOTPText) {
         OTPReceiver.otpText = editOTPText;
+    }
+
+    public String getOtp() {
+        return OTPReceiver.otp;
     }
 
     @Override
@@ -25,7 +34,20 @@ public class OTPReceiver extends BroadcastReceiver {
         SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
         for(SmsMessage smsMessage : messages) {
             String messageBody = smsMessage.getMessageBody();
-            otpText.setText(_fetchOTPFromMessage(messageBody));
+            String otp = _fetchOTPFromMessage(messageBody);
+            Log.d("##### onReceive : OTPReceiver #####", "Found OTP: "+otp);
+
+            //  Display OTP on screen
+            Toast.makeText(context.getApplicationContext(), "Found OTP: "+otp, Toast.LENGTH_LONG).show();
+            otpText.setText(otp);
+
+            //  Broadcast message to remote
+            try {
+                broadcastHelper = new BroadcastHelper(context);
+                broadcastHelper.broadcastOTP(otp);
+            } catch (Exception ex) {
+                Log.e("onReceive: OTPReceiver", "OTP roadcasting failed due to :\n"+ex.getMessage());
+            }
         }
     }
 
@@ -40,6 +62,8 @@ public class OTPReceiver extends BroadcastReceiver {
         } catch (Exception ex) {
             Log.e("_fetchOTPFromMessage", String.format("Unable to fetch OTP. Following exception occured: %s \n", ex.getMessage()));
         }
+        OTPReceiver.otp = otp;
+        Log.d("_fetchOTPFromMessage:", OTPReceiver.otp);
         return otp;
     }
 }
