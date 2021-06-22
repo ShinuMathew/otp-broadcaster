@@ -38,64 +38,6 @@ public class BroadcastHelper {
         this.context = context;
     }
 
-    public boolean broadcastOTP1(String otp) {
-        try {
-            OkHttpClient client = new OkHttpClient().newBuilder()
-                    .build();
-            MediaType mediaType = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediaType, "{\n    \"otp\" : "+otp+"\n}");
-            Request request = new Request.Builder()
-                    .url("https://otpbroadcaster-webhook.herokuapp.com/otp-broadcaster/send-otp")
-                    .method("POST", body)
-                    .addHeader("Content-Type", "application/json")
-                    .build();
-            Response response = client.newCall(request).execute();
-            return response.isSuccessful();
-        } catch (Exception ex) {
-            Log.e("broadcastOTP", "broadcastOTP: failed due to the following error: \n"+ex.getMessage());
-            return false;
-        }
-    }
-
-    public boolean broadcastOTPXX(String otp) {
-        boolean[] isPublished = {false};
-        OkHttpClient client = new OkHttpClient();
-        String url = "https://otpbroadcaster-webhook.herokuapp.com/otp-broadcaster/send-otp";
-        Log.d("##### broadcastOTP #####", "Initializing request params to be sent to : "+url);
-        MediaType mediaType = MediaType.parse("application/json");
-        String reqBody = "{\"otp\":"+otp+"}";
-        Log.d("##### broadcastOTP ##### ", " reqBody : \n"+reqBody);
-        Request request = new Request.Builder()
-                .url(url)
-                .addHeader("Content-Type", "application/json")
-                .method("POST", RequestBody.create(reqBody, mediaType))
-                .build();
-        Log.d("##### broadcastOTP #####", "Sending request : "+url+"....");
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.e("##### broadcastOTP: Callback #####", "broadcastOTP: failed due to the following error: \n"+e.getMessage());
-//                Toast.makeText(context.getApplicationContext(), "Found OTP: "+otp+" broadcast failed", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                if(response.isSuccessful()) {
-                    String myResponse = response.body().string();
-                    Log.d("##### myResponse #####", myResponse );
-                    Log.d("##### broadcastOTP: Callback #####", "broadcastOTP: SUCCESS!!");
-                    isPublished[0] = true;
-//                    Toast.makeText(context.getApplicationContext(), "OTP : "+otp+" broadcast successful", Toast.LENGTH_LONG).show();
-                } else {
-                    System.out.println(response.body().string());
-                    //  Toast.makeText(context.getApplicationContext(), "OTP : "+otp+" broadcast failed : \n"+response.body().string(), Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
-        return isPublished[0];
-    }
-
     public void broadcastOTP(String otp) throws JSONException {
         RequestQueue request = Volley.newRequestQueue(this.context);
         String url = "https://otpbroadcaster-webhook.herokuapp.com/otp-broadcaster/send-otp";

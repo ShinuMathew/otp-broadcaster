@@ -4,7 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FDFDFD"
+    android:backgroundTint="#FFFFFF"
     tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/otp_text"
+        android:layout_width="268dp"
+        android:layout_height="64dp"
+        android:background="#B9ED8B"
+        android:gravity="center"
+        android:hint="ENTER OTP"
+        android:padding="15dp"
+        android:textColor="#000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.719" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -34,22 +54,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.602" />
-
-    <EditText
-        android:id="@+id/otp_text"
-        android:layout_width="379dp"
-        android:layout_height="60dp"
-        android:background="#B9ED8B"
-        android:gravity="center"
-        android:hint="ENTER OTP"
-        android:padding="15dp"
-        android:textColor="#000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.698" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
