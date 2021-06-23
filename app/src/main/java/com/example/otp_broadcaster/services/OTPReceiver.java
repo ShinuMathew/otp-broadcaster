@@ -33,16 +33,16 @@ public class OTPReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
         for(SmsMessage smsMessage : messages) {
-            String messageBody = smsMessage.getMessageBody();
-            String otp = _fetchOTPFromMessage(messageBody);
-            Log.d("##### onReceive : OTPReceiver #####", "Found OTP: "+otp);
-
-            //  Display OTP on screen
-            Toast.makeText(context.getApplicationContext(), "Found OTP: "+otp, Toast.LENGTH_LONG).show();
-            otpText.setText(otp);
-
-            //  Broadcast message to remote
             try {
+                String messageBody = smsMessage.getMessageBody();
+                String otp = _fetchOTPFromMessage(messageBody);
+                Log.d("##### onReceive : OTPReceiver #####", "Found OTP: "+otp);
+
+                //  Display OTP on screen
+                Toast.makeText(context.getApplicationContext(), "Found OTP: "+otp, Toast.LENGTH_LONG).show();
+                otpText.setText(otp);
+
+                //  Broadcast message to remote
                 broadcastHelper = new BroadcastHelper(context);
                 broadcastHelper.broadcastOTP(otp);
             } catch (Exception ex) {
