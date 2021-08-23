@@ -33,7 +33,7 @@ public class BroadcastHelper {
         String url = "https://otpbroadcaster-webhook.herokuapp.com/otp-broadcaster/send-otp";
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("otp", otp);
+            jsonObject.put("otp", otp.toString());
             final String requestBody = jsonObject.toString();
             Log.d("broadcastOTP", requestBody);
 
