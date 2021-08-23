@@ -6,13 +6,26 @@
     android:layout_height="match_parent"
     android:background="#FDFDFD"
     android:backgroundTint="#FFFFFF"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
+
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/nav_bar"-->
+<!--        android:layout_gravity="right"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0" />-->
 
     <EditText
         android:id="@+id/otp_text"
         android:layout_width="268dp"
         android:layout_height="64dp"
-        android:background="#B9ED8B"
+        android:background="#97C5AF"
         android:gravity="center"
         android:hint="ENTER OTP"
         android:padding="15dp"
@@ -24,7 +37,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719" />
+        app:layout_constraintVertical_bias="0.733" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -36,12 +49,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17" />
+        app:layout_constraintVertical_bias="0.083" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="385dp"
+        android:layout_height="59dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="OTP BROADCASTER"
         android:textAlignment="center"
@@ -50,7 +63,6 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.602" />
